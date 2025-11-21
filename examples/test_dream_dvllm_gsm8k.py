@@ -42,29 +42,28 @@ Q: There are 15 trees in the grove. Grove workers will plant trees in the grove 
 
 
 if __name__ == "__main__":
-    model = "/root/autodl-fs/models/Dream-org/Dream-v0-Base-7B"
+    model = "/home/ljp/models/Dream-v0-Base-7B/"
     LLM = LLM(
         model,
-        lora_path="/root/autodl-fs/models/SJTU-Deng-Lab/D2F_Dream_Base_7B_Lora",
+        lora_path="/home/ljp/models/SJTU-Deng-Lab/D2F_Dream_Base_7B_Lora/",
         use_lora=True,
         model_name="dream", 
         model_type="diffusion_lm",
         enforce_eager=True, 
-        data_parallel_size=8,
+        data_parallel_size=4,
         tensor_parallel_size=1,
         gpu_memory_utilization=0.25,
-        max_num_batched_tokens=2048,
-        max_num_seqs=20,
-        max_model_len=2048,
+        max_num_batched_tokens=1024,
+        max_num_seqs=1,
+        max_model_len=1024,
         accept_threshold=0.95,
         complete_threshold=0.9,
-        add_new_block_threshold=0.1,
-        kv_cache_layout="unified"
+        add_new_block_threshold=0.1
     )
     tokenizer = AutoTokenizer.from_pretrained(model, trust_remote_code=True)
     sampling_params = SamplingParams(temperature=0.0, max_tokens=256)
     
-    dataset = load_dataset("/root/autodl-fs/datasets/openai/gsm8k", "main")['test']['question'][:]
+    dataset = load_dataset("/home/ljp/datasets/gsm8k", "main")['test']['question'][:1]
     prompts = [tokenizer.bos_token + FEW_SHOTS + p for p in tqdm(dataset)]
     
     output_file = "log/profiles/perf_dvllm_dream_7B.json"
