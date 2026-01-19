@@ -2,7 +2,7 @@
 # Quick configuration example
 
 engine:
-  model_path: "/path/to/dream/model"
+  model_path: "/data1/ckpts/Dream-org/Dream-v0-Base-7B"
   model_name: "dream"
   decoding_strategy: "d2f"
   mask_token_id: 151666
