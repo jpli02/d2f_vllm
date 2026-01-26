@@ -75,7 +75,7 @@ For more examples, check out the [examples](examples/) directory.
 
 ## Upcoming Features
 
-Check our [Diffulex v0.0.1 release plan](https://github.com/zhijie-group/Diffulex/issues/14) for upcoming features.
+Check our [Diffulex v0.0.1 release plan](https://github.com/SJTU-DENG-Lab/Diffulex/issues/14) for upcoming features.
 
 ## Join the Discussion
 
